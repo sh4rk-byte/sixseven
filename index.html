@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SixSeven</title>
+    <!-- Imports the Inter font family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden; /* Prevents scrollbars */
+        }
+
+        body {
+            background-color: #1a1a1a; /* Dark background */
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            
+            /* Center the content */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            gap: 4rem; /* Space between the numbers */
+            perspective: 800px; /* Adds some perspective for transforms */
+        }
+
+        .number {
+            font-size: 20rem; /* Large numbers */
+            line-height: 1;
+            
+            /* Make text transparent to show gradient background */
+            color: transparent;
+            
+            /* Create the gradient and clip it to the text */
+            background: linear-gradient(
+                90deg, 
+                #492f85, 
+                #1c4b68, 
+                #919496, 
+                #000000, 
+                #ffffff, 
+                #492f85 /* Repeat start color for smooth loop */
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            
+            /* Animate the gradient's position */
+            background-size: 200% auto; /* Make gradient wide enough to move */
+            animation: 
+                gradientMove 5s ease-in-out infinite,
+                /* The moveUp and moveDown animations will be applied below */
+                countPulse 1s ease-in-out infinite alternate;
+        }
+
+        /* Apply opposite vertical movement animations */
+        #number1 {
+            animation-name: gradientMove, moveUp, countPulse;
+            animation-duration: 5s, 6s, 1s;
+            animation-timing-function: ease-in-out, ease-in-out, ease-in-out;
+            animation-iteration-count: infinite, infinite, infinite;
+            animation-direction: normal, alternate, alternate;
+        }
+        
+        #number2 {
+            animation-name: gradientMove, moveDown, countPulse;
+            animation-duration: 5s, 6s, 1s;
+            animation-timing-function: ease-in-out, ease-in-out, ease-in-out;
+            animation-iteration-count: infinite, infinite, infinite;
+            animation-direction: normal, alternate, alternate;
+        }
+
+
+        /* Keyframes for the gradient color shift */
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Keyframes for the vertical movement */
+        @keyframes moveUp {
+            from {
+                transform: translateY(40px);
+            }
+            to {
+                transform: translateY(-40px);
+            }
+        }
+
+        @keyframes moveDown {
+            from {
+                transform: translateY(-40px);
+            }
+            to {
+                transform: translateY(40px);
+            }
+        }
+
+        /* Subtle pulse animation as numbers count */
+        @keyframes countPulse {
+            from {
+                transform-origin: center;
+                opacity: 0.9;
+            }
+            to {
+                transform-origin: center;
+                opacity: 1;
+            }
+        }
+
+        /* Responsive font size for smaller screens */
+        @media (max-width: 768px) {
+            .number {
+                font-size: 10rem;
+            }
+            .container {
+                gap: 2rem;
+                flex-direction: column; /* Stack numbers on mobile */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .number {
+                font-size: 8rem;
+            }
+            .container {
+                gap: 1rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="number" id="number1">6</div>
+        <div class="number" id="number2">7</div>
+    </div>
+
+    <script>
+        // const num1El = document.getElementById('number1'); // No longer needed
+        // const num2El = document.getElementById('number2'); // No longer needed
+        // 
+        // let num1 = 0; // No longer needed
+        // let num2 = 100; // No longer needed
+        // 
+        // let dir1 = 1; // No longer needed
+        // let dir2 = -1; // No longer needed
+        // 
+        // // Use a speed value to control how fast the numbers change
+        // const countSpeed = 20; // No longer needed
+        // 
+        // function updateNumbers() {
+        //     // Update Number 1
+        //     num1 += dir1;
+        //     if (num1 >= 100) {
+        //         dir1 = -1; // Change direction to down
+        //         num1 = 100; // Cap at 100
+        //     } else if (num1 <= 0) {
+        //         dir1 = 1; // Change direction to up
+        //         num1 = 0; // Cap at 0
+        //     }
+        // 
+        //     // Update Number 2
+        //     num2 += dir2;
+        //     if (num2 >= 100) {
+        //         dir2 = -1; // Change direction to down
+        //         num2 = 100; // Cap at 100
+        //     } else if (num2 <= 0) {
+        //         dir2 = 1; // Change direction to up
+        //         num2 = 0; // Cap at 0
+        //     }
+        // 
+        //     // Update the text content
+        //     // Use padStart to keep a consistent 3-digit width (e.g., 001, 010, 100)
+        //     // This prevents the layout from jittering as numbers change width
+        //     num1El.textContent = String(num1).padStart(3, '0');
+        //     num2El.textContent = String(num2).padStart(3, '0');
+        // }
+        // 
+        // // Start the number counting interval
+        // setInterval(updateNumbers, countSpeed); // No longer needed
+
+        // All JavaScript logic for counting has been removed.
+        // The CSS animations for movement and color will still run.
+    </script>
+
+</body>
+</html>
